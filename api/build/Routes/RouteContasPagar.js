@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routeContasPagar = void 0;
+const express_1 = require("express");
+const ContasPagarControllers_1 = require("../Controllers/ContasPagar/ContasPagarControllers");
+const EnsureAuthenticated_1 = require("../middlewares/EnsureAuthenticated");
+const routeContasPagar = (0, express_1.Router)();
+exports.routeContasPagar = routeContasPagar;
+const contasPagarControllers = new ContasPagarControllers_1.ContasPagarControllers();
+routeContasPagar.post('/contas_pagar_list', EnsureAuthenticated_1.ensureAuthenticated, contasPagarControllers.findAllContasPagarList);
+routeContasPagar.put('/contas_pagar', contasPagarControllers.updateContasPagar);
+routeContasPagar.post('/contas_pagar', contasPagarControllers.saveContasPagar);

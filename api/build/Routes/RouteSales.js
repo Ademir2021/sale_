@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routerSales = void 0;
+const express_1 = require("express");
+const SaleControllers_1 = require("../Controllers/Sale/SaleControllers");
+const EnsureAuthenticated_1 = require("../middlewares/EnsureAuthenticated");
+const routerSales = (0, express_1.Router)();
+exports.routerSales = routerSales;
+const saleControllers = new SaleControllers_1.SaleControllers();
+routerSales.post('/sale_register', saleControllers.registerSale);
+routerSales.post('/sale_user', EnsureAuthenticated_1.ensureAuthenticated, saleControllers.findUserSale);
+routerSales.post('/sales_list', saleControllers.findSales);

@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routePagSeguro = void 0;
+const express_1 = require("express");
+const PagSeguroControllers_1 = require("../Controllers/PagSeguro/PagSeguroControllers");
+const routePagSeguro = (0, express_1.Router)();
+exports.routePagSeguro = routePagSeguro;
+const pagSeguroControllers = new PagSeguroControllers_1.PagSeguroControllers();
+routePagSeguro.post('/pix', pagSeguroControllers.insertPix);
+routePagSeguro.post('/boleto', pagSeguroControllers.insertBoleto);
+routePagSeguro.post('/card', pagSeguroControllers.insertCard);
+routePagSeguro.get('/publickey', pagSeguroControllers.publicKeyPagSeguro);

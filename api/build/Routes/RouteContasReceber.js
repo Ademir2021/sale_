@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routeContasReceber = void 0;
+const express_1 = require("express");
+const ContasReceberControllers_1 = require("../Controllers/ContasReceber/ContasReceberControllers");
+const EnsureAuthenticated_1 = require("../middlewares/EnsureAuthenticated");
+const routeContasReceber = (0, express_1.Router)();
+exports.routeContasReceber = routeContasReceber;
+const contasReceberControllers = new ContasReceberControllers_1.ContasReceberControllers();
+routeContasReceber.post('/contas_receber_list', EnsureAuthenticated_1.ensureAuthenticated, contasReceberControllers.findAllContasReceberlist);
+routeContasReceber.put('/contas_receber', contasReceberControllers.updateContasReceber);
+routeContasReceber.post('/contas_receber', contasReceberControllers.saveContasReceber);

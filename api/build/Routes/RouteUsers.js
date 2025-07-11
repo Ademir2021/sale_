@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routeUsers = void 0;
+const express_1 = require("express");
+const UserControllers_1 = require("../Controllers/User/UserControllers");
+const postgreSQL_1 = require("../Providers/Storages/pg/postgreSQL");
+const EnsureAuthenticated_1 = require("../middlewares/EnsureAuthenticated");
+postgreSQL_1.postgreSQL.connect();
+const routeUsers = (0, express_1.Router)();
+exports.routeUsers = routeUsers;
+const userControllers = new UserControllers_1.UserControllers();
+routeUsers.post('/users_list', EnsureAuthenticated_1.ensureAuthenticated, userControllers.listUsers);
+routeUsers.post('/user_list', userControllers.listUser);
+routeUsers.post('/user', userControllers.saveUser);
+routeUsers.put('/user_update', userControllers.updateUser);
+routeUsers.delete('/user_delete', userControllers.deleteUser);
+routeUsers.post('/login', EnsureAuthenticated_1.ensureAuthenticated, userControllers.userLogin);
+routeUsers.post('/user_recover_pass', userControllers.userRecoverPass);

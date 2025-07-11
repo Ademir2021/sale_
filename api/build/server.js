@@ -1,0 +1,64 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const RouteUsers_1 = require("./Routes/RouteUsers");
+const RouteAuthenticate_1 = require("./Routes/RouteAuthenticate");
+const RouteRefreshToken_1 = require("./Authenticate/refreshTokenUser/RouteRefreshToken");
+const RoutePersons_1 = require("./Routes/RoutePersons");
+const RouteProducts_1 = require("./Routes/RouteProducts");
+const RouteSales_1 = require("./Routes/RouteSales");
+const RouteNotes_1 = require("./Routes/RouteNotes");
+const RouteBrands_1 = require("./Routes/RouteBrands");
+const RouteSectors_1 = require("./Routes/RouteSectors");
+const RouteCeps_1 = require("./Routes/RouteCeps");
+const RouteCity_1 = require("./Routes/RouteCity");
+const RoutePagSeguro_1 = require("./Routes/RoutePagSeguro");
+const RouteContacts_1 = require("./Routes/RouteContacts");
+const RouteContabilidades_1 = require("./Routes/RouteContabilidades");
+const RouteContasReceber_1 = require("./Routes/RouteContasReceber");
+const RouteValsRecebidos_1 = require("./Routes/RouteValsRecebidos");
+const RouteCaixaMovs_1 = require("./Routes/RouteCaixaMovs");
+const RouteUniMeds_1 = require("./Routes/RouteUniMeds");
+const RouteNotaRecebida_1 = require("./Routes/RouteNotaRecebida");
+const RouteContasPagar_1 = require("./Routes/RouteContasPagar");
+const RouteValsPago_1 = require("./Routes/RouteValsPago");
+const RouteDespesas_1 = require("./Routes/RouteDespesas");
+const RouteNFe_1 = require("./Routes/RouteNFe");
+const cors = require('cors');
+const app = (0, express_1.default)();
+app.use(cors());
+const PORT = process.env.PORT || 3000;
+app.use(express_1.default.json());
+app.use(RouteAuthenticate_1.routerAutheticate);
+app.use(RouteRefreshToken_1.routeRefreshToken);
+app.use(RouteUsers_1.routeUsers);
+app.use(RoutePersons_1.routerPersons);
+app.use(RouteProducts_1.routerProducts);
+app.use(RouteSales_1.routerSales);
+app.use(RouteNotes_1.routeNotes);
+app.use(RouteBrands_1.routeBrands);
+app.use(RouteSectors_1.routeSectors);
+app.use(RouteCeps_1.routeCeps);
+app.use(RouteCity_1.routeCities);
+app.use(RoutePagSeguro_1.routePagSeguro);
+app.use(RouteContacts_1.routeContacts);
+app.use(RouteContabilidades_1.routeContabilidades);
+app.use(RouteContasReceber_1.routeContasReceber);
+app.use(RouteValsRecebidos_1.routerValsRecebidos);
+app.use(RouteCaixaMovs_1.routerCaixaMovs);
+app.use(RouteUniMeds_1.routeUniMeds);
+app.use(RouteNotaRecebida_1.routeNotaRecebidas);
+app.use(RouteContasPagar_1.routeContasPagar);
+app.use(RouteValsPago_1.routerValsPago);
+app.use(RouteDespesas_1.routeDespesas);
+app.use(RouteNFe_1.routeNFe);
+app.use((error, request, response, next) => {
+    return response.json({
+        status: "Error",
+        message: error.message,
+    });
+});
+app.listen(PORT, () => console.log("server is runing on", { PORT }));

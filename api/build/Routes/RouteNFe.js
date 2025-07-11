@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routeNFe = void 0;
+const express_1 = require("express");
+const NFeControllers_1 = require("../Controllers/NFe/NFeControllers");
+const routeNFe = (0, express_1.Router)();
+exports.routeNFe = routeNFe;
+const nfeControllers = new NFeControllers_1.NFeControllers();
+routeNFe.get('/nfe', nfeControllers.handleNFe);
+routeNFe.put('/gerar_nfe', nfeControllers.gerarNFe);

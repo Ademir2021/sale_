@@ -1,0 +1,299 @@
+{
+  "nfeProc": {
+    "xmlns": "http://www.portalfiscal.inf.br/nfe",
+    "versao": "4.00",
+    "NFe": {
+      "infNFe": {
+        "versao": "4.00",
+        "Id": "NFe35140630290882000182550010000000011000000010",
+        "chNFe": "35122418069383000110550010000000012000000017",
+        "ide": {
+          "cUF": "35",
+          "cNF": "00000001",
+          "natOp": "VENDA",
+          "mod": "55",
+          "serie": "001",
+          "nNF": "000000001",
+          "dhEmi": "2024-12-19T09:23:19+00:00",
+          "dhSaiEnt": "2024-12-19T09:23:19+00:00",
+          "idDest": "1",
+          "cMunFG": "4.102.505",
+          "tpAmb": "2",
+          "tpNF": "000000001",
+          "tpEmis": "2"
+        },
+        "emit": {
+          "CNPJ": "18069383000110",
+          "xNome": "Filial 01",
+          "xFant": "null",
+          "email": "centroserra@gmail.com",
+          "fone": "44997579794",
+          "enderEmit": {
+            "xLgr": "Rua Rio Grande do Norte",
+            "nro": "1634",
+            "xBairro": "Vila Operaria",
+            "cMun": "4.102.505",
+            "xMun": "Barbosa Ferraz",
+            "UF": "PR",
+            "CEP": "86.960-000",
+            "cPais": "1.058",
+            "xPais": "Brasil"
+          },
+          "IE": "isento",
+          "CRT": "isento",
+          "XFant": "Centro Informática"
+        },
+        "dest": {
+          "CNPJ": "0",
+          "CPF": "12345678909",
+          "xNome": "José da Silva",
+          "email": "centroserra@gmail.com",
+          "fone": "44999999999",
+          "enderDest": {
+            "xLgr": "Rua Castro Alves",
+            "nro": "1330",
+            "xBairro": "Centro",
+            "cPais": "1.058",
+            "xPais": "Brasil",
+            "cMun": "4.102.505",
+            "UF": "PR",
+            "xMun": "Barbosa Ferraz",
+            "CEP": "86.960-000"
+          },
+          "indIEDest": "0",
+          "IE": "0"
+        },
+        "det": [
+          {
+            "nItem": "1",
+            "prod": {
+              "cProd": 1,
+              "cEAN": "1",
+              "xProd": "Lnbf Universal Century Ku single",
+              "NCM": "85437014",
+              "CFOP": "5102",
+              "uCom": "PC",
+              "qCom": 3,
+              "vUnCom": "18.00",
+              "vProd": "54.00",
+              "cEANTrib": "EAN Tributável: ",
+              "uTrib": "Unidade Tributável: ",
+              "qTrib": "Quantidade Tributável: ",
+              "vUnTrib": "Valor Unitário Tributável: ",
+              "indTot": "Indicador de Total: "
+            },
+            "imposto": {
+              "ICMS": {
+                "ICMS00": {
+                  "orig": "Origem do ICMS",
+                  "CST": "CST:",
+                  "modBC": "Modalidade de BC:",
+                  "vBC": 90,
+                  "pICMS": "0.0000",
+                  "vICMS": 0
+                }
+              },
+              "PIS": {
+                "PISAliq": {
+                  "CST": 99,
+                  "vBC": "0.0000",
+                  "pPIS": "0.0000",
+                  "vPIS": 0
+                }
+              },
+              "COFINS": {
+                "COFINSAliq": {
+                  "CST": 99,
+                  "vBC": "0.0000",
+                  "pCOFINS": "0.0000",
+                  "vCOFINS": 0
+                }
+              }
+            }
+          },
+          {
+            "nItem": "2",
+            "prod": {
+              "cProd": 2,
+              "cEAN": "2",
+              "xProd": "Smart Tv Box Aquario Stv-3000 AV HDMI",
+              "NCM": "00000000",
+              "CFOP": "5102",
+              "uCom": "PC",
+              "qCom": 1,
+              "vUnCom": "350.00",
+              "vProd": "350.00",
+              "cEANTrib": "EAN Tributável: ",
+              "uTrib": "Unidade Tributável: ",
+              "qTrib": "Quantidade Tributável: ",
+              "vUnTrib": "Valor Unitário Tributável: ",
+              "indTot": "Indicador de Total: "
+            },
+            "imposto": {
+              "ICMS": {
+                "ICMS00": {
+                  "orig": "Origem do ICMS",
+                  "CST": "CST:",
+                  "modBC": "Modalidade de BC:",
+                  "vBC": 90,
+                  "pICMS": "0.0000",
+                  "vICMS": 0
+                }
+              },
+              "PIS": {
+                "PISAliq": {
+                  "CST": 99,
+                  "vBC": "0.0000",
+                  "pPIS": "0.0000",
+                  "vPIS": 0
+                }
+              },
+              "COFINS": {
+                "COFINSAliq": {
+                  "CST": 99,
+                  "vBC": "0.0000",
+                  "pCOFINS": "0.0000",
+                  "vCOFINS": 0
+                }
+              }
+            }
+          },
+          {
+            "nItem": "3",
+            "prod": {
+              "cProd": 3,
+              "cEAN": "3",
+              "xProd": "Fonte CPU PowerX ATX 300W",
+              "NCM": "00000000",
+              "CFOP": "5102",
+              "uCom": "PC",
+              "qCom": 1,
+              "vUnCom": "129.90",
+              "vProd": "129.90",
+              "cEANTrib": "EAN Tributável: ",
+              "uTrib": "Unidade Tributável: ",
+              "qTrib": "Quantidade Tributável: ",
+              "vUnTrib": "Valor Unitário Tributável: ",
+              "indTot": "Indicador de Total: "
+            },
+            "imposto": {
+              "ICMS": {
+                "ICMS00": {
+                  "orig": "Origem do ICMS",
+                  "CST": "CST:",
+                  "modBC": "Modalidade de BC:",
+                  "vBC": 90,
+                  "pICMS": "0.0000",
+                  "vICMS": 0
+                }
+              },
+              "PIS": {
+                "PISAliq": {
+                  "CST": 99,
+                  "vBC": "0.0000",
+                  "pPIS": "0.0000",
+                  "vPIS": 0
+                }
+              },
+              "COFINS": {
+                "COFINSAliq": {
+                  "CST": 99,
+                  "vBC": "0.0000",
+                  "pCOFINS": "0.0000",
+                  "vCOFINS": 0
+                }
+              }
+            }
+          },
+          {
+            "nItem": "4",
+            "prod": {
+              "cProd": 4,
+              "cEAN": "4",
+              "xProd": "Teclado Multilaser TC193 PT Abnt2",
+              "NCM": "00000000",
+              "CFOP": "5102",
+              "uCom": "UN",
+              "qCom": 1,
+              "vUnCom": "29.00",
+              "vProd": "29.00",
+              "cEANTrib": "EAN Tributável: ",
+              "uTrib": "Unidade Tributável: ",
+              "qTrib": "Quantidade Tributável: ",
+              "vUnTrib": "Valor Unitário Tributável: ",
+              "indTot": "Indicador de Total: "
+            },
+            "imposto": {
+              "ICMS": {
+                "ICMS00": {
+                  "orig": "Origem do ICMS",
+                  "CST": "CST:",
+                  "modBC": "Modalidade de BC:",
+                  "vBC": 90,
+                  "pICMS": "0.0000",
+                  "vICMS": 0
+                }
+              },
+              "PIS": {
+                "PISAliq": {
+                  "CST": 99,
+                  "vBC": "0.0000",
+                  "pPIS": "0.0000",
+                  "vPIS": 0
+                }
+              },
+              "COFINS": {
+                "COFINSAliq": {
+                  "CST": 99,
+                  "vBC": "0.0000",
+                  "pCOFINS": "0.0000",
+                  "vCOFINS": 0
+                }
+              }
+            }
+          }
+        ],
+        "total": {
+          "ICMSTot": {
+            "vICMS": 56.8,
+            "vBC": "562.90",
+            "vProd": "530.90",
+            "vNF": "530.90",
+            "CNF": "562.90"
+          }
+        },
+        "transp": {
+          "modFrete": "0"
+        }
+      },
+      "Signature": {
+        "SignedInfo": {
+          "CanonicalizationMethod": {
+            "Algorithm": "http://www.w3.org/TR/2001/REC-xml-c14n-20010315"
+          },
+          "SignatureMethod": {
+            "Algorithm": "http://www.w3.org/2000/09/xmldsig#rsa-sha1"
+          },
+          "Reference": {
+            "URI": "#NFe35180383795740000178550010000000011000000016",
+            "Transforms": {
+              "Transform": {
+                "Algorithm": "http://www.w3.org/2000/09/xmldsig#enveloped-signature"
+              }
+            },
+            "DigestMethod": {
+              "Algorithm": "http://www.w3.org/2000/09/xmldsig#sha1"
+            },
+            "DigestValue": "abc123"
+          }
+        },
+        "SignatureValue": "signature-value",
+        "KeyInfo": {
+          "X509Data": {
+            "X509Certificate": "certificate-value"
+          }
+        }
+      }
+    }
+  }
+}

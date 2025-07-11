@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routeCities = void 0;
+const express_1 = require("express");
+const CityControllers_1 = require("../Controllers/City/CityControllers");
+const routeCities = (0, express_1.Router)();
+exports.routeCities = routeCities;
+const citiesControllers = new CityControllers_1.CitiesControllers();
+routeCities.get('/on_city/:id', citiesControllers.selectOnCity);
+routeCities.get('/cities', citiesControllers.select);

@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routerPersons = void 0;
+const express_1 = require("express");
+const PersonsControllers_1 = require("../Controllers/Person/PersonsControllers");
+const EnsureAuthenticated_1 = require("../middlewares/EnsureAuthenticated");
+const routerPersons = (0, express_1.Router)();
+exports.routerPersons = routerPersons;
+const personsControllers = new PersonsControllers_1.PersonsControllers();
+routerPersons.post('/persons_list', personsControllers.listPersons);
+routerPersons.post('/persons_user', EnsureAuthenticated_1.ensureAuthenticated, personsControllers.listUserPersons);
+routerPersons.post('/person_list', personsControllers.listPerson);
+routerPersons.post('/person', personsControllers.savePerson);
+routerPersons.put('/person_update', personsControllers.updatePerson);
+routerPersons.delete('/person_delete', personsControllers.deletePerson);

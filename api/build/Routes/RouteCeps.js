@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routeCeps = void 0;
+const express_1 = require("express");
+const CepControllers_1 = require("../Controllers/Cep/CepControllers");
+const routeCeps = (0, express_1.Router)();
+exports.routeCeps = routeCeps;
+const cepControllers = new CepControllers_1.CepControllers();
+routeCeps.get('/ceps', cepControllers.select);
+routeCeps.post('/ceps', cepControllers.insert);

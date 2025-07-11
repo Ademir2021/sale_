@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  # Serviço Node.js
+  node-web:
+    build: .
+    container_name: node-web
+    ports:
+      - "3001:3001"

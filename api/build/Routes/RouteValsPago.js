@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routerValsPago = void 0;
+const express_1 = require("express");
+const ValPagoControllers_1 = require("../Controllers/ValPago/ValPagoControllers");
+const EnsureAuthenticated_1 = require("../middlewares/EnsureAuthenticated");
+const routerValsPago = (0, express_1.Router)();
+exports.routerValsPago = routerValsPago;
+const valPagoControllers = new ValPagoControllers_1.ValPagoControllers();
+routerValsPago.post('/val_pago', valPagoControllers.registerValPago);
+routerValsPago.post('/vals_pagos_list', EnsureAuthenticated_1.ensureAuthenticated, valPagoControllers.findAllList);

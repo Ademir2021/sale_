@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routerValsRecebidos = void 0;
+const express_1 = require("express");
+const ValRecebidoControllers_1 = require("../Controllers/ValRecebido/ValRecebidoControllers");
+const EnsureAuthenticated_1 = require("../middlewares/EnsureAuthenticated");
+const routerValsRecebidos = (0, express_1.Router)();
+exports.routerValsRecebidos = routerValsRecebidos;
+const valRecebidoControllers = new ValRecebidoControllers_1.ValRecebidoControllers();
+routerValsRecebidos.post('/val_recebido', valRecebidoControllers.registerValRecebido);
+routerValsRecebidos.post('/vals_recebidos_list', EnsureAuthenticated_1.ensureAuthenticated, valRecebidoControllers.findAllList);
