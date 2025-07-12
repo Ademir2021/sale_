@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir="webapi/bkp_base"
+dir="api/bkp_base"
 
 echo "Verificando backup atual."
 busca=$(find $dir/. -type f | wc -l)
