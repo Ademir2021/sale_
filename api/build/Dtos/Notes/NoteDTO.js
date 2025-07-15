@@ -15,8 +15,8 @@ const noteDAO = new NoteDAO_1.NoteDAO();
 class NoteDTO {
     getNote(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const note = yield noteDAO.getNote(id);
-            return note;
+            const resNote = yield noteDAO.getNote(id);
+            return resNote;
         });
     }
     getItemsNote(id) {

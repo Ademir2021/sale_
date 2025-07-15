@@ -15,8 +15,8 @@ const noteDTO = new NoteDTO_1.NoteDTO();
 class NotesServices {
     getNote(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const note = yield noteDTO.getNote(id);
-            return note;
+            const resNote = yield noteDTO.getNote(id);
+            return resNote;
         });
     }
     getItemsNote(id) {

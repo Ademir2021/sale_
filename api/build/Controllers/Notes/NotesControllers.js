@@ -20,24 +20,23 @@ const NotesServices_1 = require("../../Services/Notes/NotesServices");
 const fs_1 = __importDefault(require("fs"));
 const pdfmake_1 = __importDefault(require("pdfmake"));
 const qrcode_1 = __importDefault(require("qrcode"));
+const Note_1 = require("../../Entities/Note/Note");
 const handleService = new nodeMailer_1.HandleService();
-const noteService = new NotesServices_1.NotesServices();
+const notesServices = new NotesServices_1.NotesServices();
 class ConttrollersNotes {
     select(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
+            var _a, _b, _c;
             try {
                 const { num_nota: num_note } = request.params;
-                const resNota = yield noteService.getNote(num_note);
-                const { nota, filial, comprador, cpf, endereco, num_endereco, telefone, usuario, email, emitida, val_rec, desc_venda, total_venda, fantasia, f_endereco, cnpj, inscricao, f_telefone, f_email, bairro, cep, uf, municipio } = resNota;
-                const resItemsNota = yield noteService.getItemsNote(num_note);
-                const itens = resItemsNota;
-                const invoices = yield noteService.getInvoice(num_note);
-                const resMoney = yield noteService.getMoney(num_note);
-                const dinheiro = resMoney;
-                const bodyItems = yield (0, mountTableItems_1.mountTableItems)(itens);
-                const bodyInvoice = yield (0, mountTableInvoice_1.mountTableInvoice)(invoices);
-                // const qrText = `Nota Nº ${nota} - Emitida em: ${new Date(emitida).toLocaleDateString('pt-BR')}`;
-                const qrText = `https://api.centroinfo.com.br/note/${nota}`;
+                const res = yield notesServices.getNote(num_note);
+                const itens = yield notesServices.getItemsNote(num_note);
+                const invoices = yield notesServices.getInvoice(num_note);
+                const money = yield notesServices.getMoney(num_note);
+                const newNote = new Note_1.Note(res.nota, res.filial, res.comprador, res.cpf, res.endereco, res.num_endereco, res.telefone, res.usuario, res.email, res.emitida, res.val_rec, res.desc_venda, res.total_venda, res.fantasia, res.f_endereco, res.cnpj, res.inscricao, res.f_telefone, res.f_email, res.bairro, res.cep, res.uf, res.municipio, itens, invoices, money);
+                const bodyItems = yield (0, mountTableItems_1.mountTableItems)((_a = newNote.items) !== null && _a !== void 0 ? _a : []);
+                const bodyInvoice = yield (0, mountTableInvoice_1.mountTableInvoice)((_b = newNote.invoices) !== null && _b !== void 0 ? _b : []);
+                const qrText = `https://api.centroinfo.com.br/note/${newNote.nota}`;
                 const qrDataUrl = yield qrcode_1.default.toDataURL(qrText); // Gera imagem base64
                 const fonts = {
                     Helvetica: {
@@ -79,20 +78,20 @@ class ConttrollersNotes {
                                 {
                                     width: '*',
                                     text: [
-                                        { text: `${fantasia}\n`, style: 'empresaTitulo' },
-                                        `Filial: ${filial}\n`,
-                                        `CNPJ: ${cnpj} | IE: ${inscricao}\n`,
-                                        `Endereço: ${f_endereco}\n`,
-                                        `Telefone: ${f_telefone} | Email: ${f_email}`
+                                        { text: `${newNote.fantasia}\n`, style: 'empresaTitulo' },
+                                        `Filial: ${newNote.filial}\n`,
+                                        `CNPJ: ${newNote.cnpj} | IE: ${newNote.inscricao}\n`,
+                                        `Endereço: ${newNote.f_endereco}\n`,
+                                        `Telefone: ${newNote.f_telefone} | Email: ${newNote.f_email}`
                                     ],
                                     margin: [10, 0, 0, 0],
                                     fontSize: 9
                                 },
                                 {
                                     text: [
-                                        { text: `Nota de Venda Nº ${String(nota).padStart(6, '0')}\n`, bold: true },
+                                        { text: `Nota de Venda Nº ${String(newNote.nota).padStart(6, '0')}\n`, bold: true },
                                         `Espécie: [PE]\n`,
-                                        `Emissão: ${new Date(emitida).toLocaleDateString('pt-BR')}`
+                                        `Emissão: ${new Date(newNote.emitida).toLocaleDateString('pt-BR')}`
                                     ],
                                     alignment: 'right',
                                     fontSize: 9
@@ -111,19 +110,19 @@ class ConttrollersNotes {
                             table: {
                                 widths: ["50%", "50%"],
                                 body: [
-                                    [`Nome: ${comprador}`, `Telefone: ${telefone}`],
-                                    [`CPF: ${cpf}`, ``],
-                                    [`Endereço: ${endereco}, Nº ${num_endereco}`, `Bairro: ${bairro}`],
-                                    [`Cidade: ${municipio}`, `Estado: ${uf}`],
-                                    [`CEP: ${cep}`, `Email: ${email}`],
-                                    [`Usuário: ${usuario}`, ``]
+                                    [`Nome: ${newNote.comprador}`, `Telefone: ${newNote.telefone}`],
+                                    [`CPF: ${newNote.cpf}`, ``],
+                                    [`Endereço: ${newNote.endereco}, Nº ${newNote.num_endereco}`, `Bairro: ${newNote.bairro}`],
+                                    [`Cidade: ${newNote.municipio}`, `Estado: ${newNote.uf}`],
+                                    [`CEP: ${newNote.cep}`, `Email: ${newNote.email}`],
+                                    [`Usuário: ${newNote.usuario}`, ``]
                                 ]
                             }
                         },
                         // Valor recebido
                         { text: '\nVALOR RECEBIDO EM DINHEIRO / ESPÉCIE', style: 'sectionHeader' },
                         {
-                            text: `R$ ${parseFloat((dinheiro === null || dinheiro === void 0 ? void 0 : dinheiro.valor) || 0).toFixed(2)}`,
+                            text: `R$ ${parseFloat(((_c = newNote.money) === null || _c === void 0 ? void 0 : _c.valor) || '0').toFixed(2)}`,
                             style: 'valorDestaque'
                         },
                         // Faturas
@@ -153,10 +152,10 @@ class ConttrollersNotes {
                             table: {
                                 widths: ['25%', '25%', '25%', '25%'],
                                 body: [[
-                                        { text: `Produtos/Serviços:\nR$ ${total_venda}`, alignment: 'right' },
-                                        { text: `Desconto:\nR$ ${desc_venda}`, alignment: 'right' },
-                                        { text: `Total a pagar:\nR$ ${val_rec}`, alignment: 'right' },
-                                        { text: `Total Nota:\nR$ ${val_rec}`, alignment: 'right' }
+                                        { text: `Produtos/Serviços:\nR$ ${newNote.total_venda}`, alignment: 'right' },
+                                        { text: `Desconto:\nR$ ${newNote.desc_venda}`, alignment: 'right' },
+                                        { text: `Total a pagar:\nR$ ${newNote.val_rec}`, alignment: 'right' },
+                                        { text: `Total Nota:\nR$ ${newNote.val_rec}`, alignment: 'right' }
                                     ]]
                             },
                             margin: [0, 5, 0, 10]
@@ -169,8 +168,8 @@ class ConttrollersNotes {
                                 body: [[
                                         {
                                             text: `Observações:\n` +
-                                                `Valor recebido em dinheiro: R$ ${parseFloat((dinheiro === null || dinheiro === void 0 ? void 0 : dinheiro.valor) || 0).toFixed(2)}\n` +
-                                                `Esta nota Nº ${String(nota).padStart(6, '0')} não possui valor fiscal.\n` +
+                                                `Valor recebido em dinheiro: R$ ${parseFloat((money === null || money === void 0 ? void 0 : money.valor) || '0').toFixed(2)}\n` +
+                                                `Esta nota Nº ${String(newNote.nota).padStart(6, '0')} não possui valor fiscal.\n` +
                                                 `Nota emitida on-line pelo site: https://www.centroinfo.com.br`,
                                             fontSize: 9
                                         }
@@ -232,7 +231,7 @@ class ConttrollersNotes {
                     const result = Buffer.concat(chunks);
                     response.end(result);
                 });
-                handleService.setSendMailNote(num_note, email, telefone, comprador, endereco);
+                // handleService.setSendMailNote(num_note, email, telefone, comprador, endereco)
             }
             catch (err) {
                 response.json("Error Occurred ! " + err);

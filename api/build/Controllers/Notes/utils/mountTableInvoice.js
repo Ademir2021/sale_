@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mountTableInvoice = mountTableInvoice;
-function mountTableInvoice(faturas) {
+function mountTableInvoice(invoices) {
     return __awaiter(this, void 0, void 0, function* () {
         const header = [
             { text: "Número", style: "columnsTitle" },
@@ -18,11 +18,11 @@ function mountTableInvoice(faturas) {
             { text: "Vencimento", style: "columnsTitle" },
             { text: "Valor", style: "columnsTitle" },
         ];
-        const rows = faturas.map(fatura => [
-            fatura.id_conta,
-            fatura.tipo,
-            new Date(fatura.vencimento).toLocaleDateString("pt-BR"),
-            fatura.valor
+        const rows = invoices.map(invoice => [
+            invoice.id_conta,
+            invoice.tipo,
+            new Date(invoice.vencimento).toLocaleDateString("pt-BR"),
+            invoice.valor
         ]);
         return [header, ...rows];
     });
