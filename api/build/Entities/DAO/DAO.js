@@ -17,78 +17,89 @@ class DAO {
         this.name = "";
     }
     errors(err) {
-        return "Error occurred ! " + err;
+        return `Error occurred: ${err}`;
     }
-    ;
-    select(table, filed) {
+    isValidIdentifier(value) {
+        return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(value);
+    }
+    select(table, field) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!this.isValidIdentifier(table) || !this.isValidIdentifier(field)) {
+                return this.errors("Invalid table or field name");
+            }
             try {
-                const res = yield postgreSQL_1.postgreSQL.query("SELECT * FROM " + table + " ORDER BY " + filed + "");
+                const query = `SELECT * FROM ${table} ORDER BY ${field}`;
+                const res = yield postgreSQL_1.postgreSQL.query(query);
                 return res.rows;
             }
             catch (err) {
-                return (this.errors(err));
+                return this.errors(err);
             }
         });
     }
-    ;
-    selectLimit(table, filed) {
-        return __awaiter(this, void 0, void 0, function* () {
+    selectLimit(table_1, field_1) {
+        return __awaiter(this, arguments, void 0, function* (table, field, limit = 8) {
+            if (!this.isValidIdentifier(table) || !this.isValidIdentifier(field)) {
+                return this.errors("Invalid table or field name");
+            }
             try {
-                const res = yield postgreSQL_1.postgreSQL.query("SELECT * FROM " + table + " ORDER BY " + filed + " DESC LIMIT 8");
+                const query = `SELECT * FROM ${table} ORDER BY ${field} DESC LIMIT $1`;
+                const res = yield postgreSQL_1.postgreSQL.query(query, [limit]);
                 return res.rows;
             }
             catch (err) {
-                return (this.errors(err));
+                return this.errors(err);
             }
         });
     }
-    ;
     selectOne(table, id, field) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const res = yield postgreSQL_1.postgreSQL.query("SELECT * FROM " + table + " WHERE " + field + " = " + id + "");
+                const query = `SELECT * FROM ${table} WHERE ${field} = $1`;
+                const res = yield postgreSQL_1.postgreSQL.query(query, [id]);
                 if (res.rowCount !== 0) {
                     return res.rows;
                 }
                 else {
-                    return "ID:" + id + ", não localizado";
+                    return `ID: ${id} não localizado`;
                 }
             }
             catch (err) {
-                return (this.errors(err));
+                return this.errors(err);
             }
         });
     }
-    ;
-    selectHandle(table, field1, field2) {
+    selectHandle(table, field, value) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!this.isValidIdentifier(table) || !this.isValidIdentifier(field)) {
+                return this.errors("Invalid table or field name");
+            }
             try {
-                const res = yield postgreSQL_1.postgreSQL.query("SELECT * FROM " + table + " WHERE " + field1 + " = '" + field2 + "'");
-                return (res.rows);
+                const query = `SELECT * FROM ${table} WHERE ${field} = $1`;
+                const res = yield postgreSQL_1.postgreSQL.query(query, [value]);
+                return res.rows;
             }
             catch (err) {
-                return (this.errors(err));
+                return this.errors(err);
             }
         });
     }
-    ;
-    delete(table, id, id_) {
+    delete(table, field, id) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!this.isValidIdentifier(table) || !this.isValidIdentifier(field)) {
+                return this.errors("Invalid table or field name");
+            }
             try {
-                const res = yield postgreSQL_1.postgreSQL.query("DELETE FROM " + table + " WHERE " + id + " = " + id_ + "");
-                if (res.rowCount !== 0) {
-                    return "ID:" + res.rowCount + ", deletado com sucesso";
-                }
-                else {
-                    return "ID:" + id + ", não localizado";
-                }
+                const query = `DELETE FROM ${table} WHERE ${field} = $1`;
+                const res = yield postgreSQL_1.postgreSQL.query(query, [id]);
+                return res.rowCount
+                    ? `ID: ${id} deletado com sucesso`
+                    : `ID: ${id} não localizado`;
             }
             catch (err) {
-                return (this.errors(err));
+                return this.errors(err);
             }
         });
     }
-    ;
 }
 exports.DAO = DAO;

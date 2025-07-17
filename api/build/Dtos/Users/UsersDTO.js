@@ -48,7 +48,7 @@ class UsersDTO {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield this.findUser(User);
             if (user[0].id === User.id) {
-                const user = yield new UserDAO_1.UserDAO().updateUSer(User);
+                const user = yield new UserDAO_1.UserDAO().updateUser(User);
                 return (msgUserUpdatedSuccessfully);
             }
             else {

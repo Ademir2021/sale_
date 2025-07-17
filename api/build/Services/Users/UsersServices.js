@@ -51,7 +51,7 @@ class UsersServices {
     userRecoverPass(User) {
         return __awaiter(this, void 0, void 0, function* () {
             const resp = yield new UsersDTO_1.UsersDTO().userRecoverPass(User);
-            const res = yield new UserDAO_1.UserDAO().recoverUpdateUSer(User);
+            const res = yield new UserDAO_1.UserDAO().recoverUpdateUser(User);
             const handleService = new nodeMailer_1.HandleService();
             handleService.setSendMailRecoverUserPass(User.username, User.hash);
             return resp;

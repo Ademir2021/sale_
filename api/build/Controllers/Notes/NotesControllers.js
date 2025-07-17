@@ -12,19 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ConttrollersNotes = void 0;
-const nodeMailer_1 = require("../../Providers/Mail/nodeMailer");
-const mountTableInvoice_1 = require("./utils/mountTableInvoice");
-const mountTableItems_1 = require("./utils/mountTableItems");
-const NotesServices_1 = require("../../Services/Notes/NotesServices");
+exports.ConttrolersNotes = void 0;
 const fs_1 = __importDefault(require("fs"));
 const pdfmake_1 = __importDefault(require("pdfmake"));
 const qrcode_1 = __importDefault(require("qrcode"));
+const nodeMailer_1 = require("../../Providers/Mail/nodeMailer");
+const mountTableInvoice_1 = require("./utils/mountTableInvoice");
+const mountTableItems_1 = require("./utils/mountTableItems");
 const Note_1 = require("../../Entities/Note/Note");
+const NotesServices_1 = require("../../Services/Notes/NotesServices");
 const handleService = new nodeMailer_1.HandleService();
 const notesServices = new NotesServices_1.NotesServices();
-class ConttrollersNotes {
-    select(request, response) {
+class ConttrolersNotes {
+    createNote(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a, _b, _c;
             try {
@@ -240,4 +240,4 @@ class ConttrollersNotes {
     }
     ;
 }
-exports.ConttrollersNotes = ConttrollersNotes;
+exports.ConttrolersNotes = ConttrolersNotes;

@@ -16,60 +16,90 @@ class UserDAO extends DAO_1.DAO {
     insertUser(User) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield postgreSQL_1.postgreSQL.query('INSERT INTO ' + UserDAO.table + ' (name, username, password) VALUES (' + "'" + User.name + "', '" + User.username + "', '" + User.password + "')");
+                const query = `
+                INSERT INTO ${UserDAO.table} (name, username, password)
+                VALUES ($1, $2, $3)
+            `;
+                const values = [User.name, User.username, User.password];
+                yield postgreSQL_1.postgreSQL.query(query, values);
             }
             catch (err) {
-                return (new UserDAO().errors(err));
+                return new UserDAO().errors(err);
             }
         });
     }
-    ;
-    updateUSer(User) {
+    updateUser(User) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield postgreSQL_1.postgreSQL.query("UPDATE " + UserDAO.table + " SET updated_at = now(), name = '" + User.name + "', username = '" + User.username + "', password = '" + User.password + "' WHERE id = '" + User.id + "'");
+                const query = `
+                UPDATE ${UserDAO.table}
+                SET 
+                    updated_at = now(),
+                    name = $1,
+                    username = $2,
+                    password = $3
+                WHERE id = $4
+            `;
+                const values = [User.name, User.username, User.password, User.id];
+                yield postgreSQL_1.postgreSQL.query(query, values);
             }
             catch (err) {
-                return (new UserDAO().errors(err));
+                return new UserDAO().errors(err);
             }
         });
     }
-    ;
     selectUsername(User) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const res = yield postgreSQL_1.postgreSQL.query("SELECT id, name, username, password, privilege FROM " + UserDAO.table + " WHERE username = '" + User.username + "'");
+                const query = `
+                SELECT id, name, username, password, privilege
+                FROM ${UserDAO.table}
+                WHERE username = $1
+            `;
+                const values = [User.username];
+                const res = yield postgreSQL_1.postgreSQL.query(query, values);
                 return res.rows;
             }
             catch (err) {
-                return (new UserDAO().errors(err));
+                return new UserDAO().errors(err);
             }
         });
     }
-    ;
     userRecoverPass(User) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const res = yield postgreSQL_1.postgreSQL.query("SELECT username FROM " + UserDAO.table + " WHERE username = '" + User.username + "'");
+                const query = `
+                SELECT username
+                FROM ${UserDAO.table}
+                WHERE username = $1
+            `;
+                const values = [User.username];
+                const res = yield postgreSQL_1.postgreSQL.query(query, values);
                 return res.rows;
             }
             catch (err) {
-                return (new UserDAO().errors(err));
+                return new UserDAO().errors(err);
             }
         });
     }
-    ;
-    recoverUpdateUSer(User) {
+    recoverUpdateUser(User) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield postgreSQL_1.postgreSQL.query("UPDATE " + UserDAO.table + " SET updated_at = now(), password = '" + User.password + "' WHERE username = '" + User.username + "'");
+                const query = `
+                UPDATE ${UserDAO.table}
+                SET 
+                    updated_at = now(),
+                    password = $1
+                WHERE username = $2
+            `;
+                const values = [User.password, User.username];
+                yield postgreSQL_1.postgreSQL.query(query, values);
             }
             catch (err) {
-                return (new UserDAO().errors(err));
+                return new UserDAO().errors(err);
             }
         });
     }
-    ;
 }
 exports.UserDAO = UserDAO;
 UserDAO.table = "users";

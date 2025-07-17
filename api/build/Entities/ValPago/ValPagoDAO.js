@@ -15,24 +15,29 @@ const DAO_1 = require("../DAO/DAO");
 class ValPagoDAO extends DAO_1.DAO {
     insert(Vals) {
         return __awaiter(this, void 0, void 0, function* () {
+            const query = `
+      INSERT INTO ${ValPagoDAO.table} 
+        (fk_conta, fk_compra, fk_user, valor, data_recebimento, descricao, fk_person, fk_despesa) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    `;
+            const values = [
+                Vals.fk_conta,
+                Vals.fk_compra,
+                Vals.fk_user,
+                Vals.valor,
+                Vals.data_recebimento,
+                Vals.descricao,
+                Vals.fk_person,
+                Vals.fk_despesa,
+            ];
             try {
-                yield postgreSQL_1.postgreSQL.query('INSERT INTO ' + ValPagoDAO.table + '(fk_conta, fk_compra, fk_user, valor, data_recebimento, descricao, fk_person, fk_despesa) VALUES ('
-                    + "'" + Vals.fk_conta
-                    + "','" + Vals.fk_compra
-                    + "', '" + Vals.fk_user
-                    + "', '" + Vals.valor
-                    + "', '" + Vals.data_recebimento
-                    + "', '" + Vals.descricao
-                    + "', '" + Vals.fk_person
-                    + "', '" + Vals.fk_despesa
-                    + "')");
+                yield postgreSQL_1.postgreSQL.query(query, values);
             }
             catch (err) {
-                return (new ValPagoDAO().errors(err));
+                return new ValPagoDAO().errors(err);
             }
         });
     }
-    ;
 }
 exports.ValPagoDAO = ValPagoDAO;
 ValPagoDAO.table = 'vals_pagos';
