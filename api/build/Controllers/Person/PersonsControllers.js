@@ -16,18 +16,20 @@ class PersonsControllers {
     savePerson(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resp = request.body;
-            const person = new Person_1.Person(resp.id_person, resp.name_pers, resp.cpf_pers, resp.phone_pers, resp.address_pers, resp.num_address, resp.bairro_pers, resp.fk_cep, resp.fk_name_filial, resp.fk_id_user, resp.rg, resp.cnpj, resp.inscricao, resp.fantasia, resp.limit_cred, resp.fk_grupo);
+            const person = new Person_1.Person(resp.id_person, resp.name_pers, resp.date_of_birth, resp.cpf_pers, resp.phone_pers, resp.address_pers, resp.num_address, resp.bairro_pers, resp.fk_cep, resp.fk_name_filial, resp.fk_id_user, resp.rg, resp.cnpj, resp.inscricao, resp.fantasia, resp.limit_cred, resp.fk_grupo);
             const res = yield new PersonsServices_1.PersonsServices().savePerson(person);
             response.json(res);
+            // console.log(person)
         });
     }
     ;
     updatePerson(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resp = request.body;
-            const person = new Person_1.Person(resp.id_person, resp.name_pers, resp.cpf_pers, resp.phone_pers, resp.address_pers, resp.num_address, resp.bairro_pers, resp.fk_cep, resp.fk_name_filial, resp.fk_id_user, resp.rg, resp.cnpj, resp.inscricao, resp.fantasia, resp.limit_cred, resp.fk_grupo);
+            const person = new Person_1.Person(resp.id_person, resp.name_pers, resp.date_of_birth, resp.cpf_pers, resp.phone_pers, resp.address_pers, resp.num_address, resp.bairro_pers, resp.fk_cep, resp.fk_name_filial, resp.fk_id_user, resp.rg, resp.cnpj, resp.inscricao, resp.fantasia, resp.limit_cred, resp.fk_grupo);
             const res = yield new PersonsServices_1.PersonsServices().updatePerson(person);
             response.json(res);
+            // console.log(person)
         });
     }
     ;

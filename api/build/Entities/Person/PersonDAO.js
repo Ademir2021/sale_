@@ -13,30 +13,33 @@ exports.PersonDAO = void 0;
 const DAO_1 = require("../DAO/DAO");
 const postgreSQL_1 = require("../../Providers/Storages/pg/postgreSQL");
 class PersonDAO extends DAO_1.DAO {
-    insert(Person) {
+    insert(person) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const query = `
                 INSERT INTO ${PersonDAO.table}
-                (name_pers, cpf_pers, phone_pers, address_pers, num_address, fk_name_filial, fk_id_user, bairro_pers, fk_cep, rg, cnpj, inscricao, fantasia, limit_cred, fk_grupo)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
-            `;
+                (name_pers, cpf_pers, phone_pers, address_pers, num_address,
+                fk_name_filial, fk_id_user, bairro_pers, fk_cep, rg, cnpj,
+                inscricao, fantasia, limit_cred, fk_grupo, date_of_birth, age )
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)`;
                 const values = [
-                    Person.name,
-                    Person.cpf_pers,
-                    Person.phone_pers,
-                    Person.address_pers,
-                    Person.num_address,
-                    Person.fk_name_filial,
-                    Person.fk_id_user,
-                    Person.bairro_pers,
-                    Person.fk_cep,
-                    Person.rg,
-                    Person.cnpj,
-                    Person.inscricao,
-                    Person.fantasia,
-                    Person.limit_cred,
-                    Person.fk_grupo
+                    person.name,
+                    person.cpf_pers,
+                    person.phone_pers,
+                    person.address_pers,
+                    person.num_address,
+                    person.fk_name_filial,
+                    person.fk_id_user,
+                    person.bairro_pers,
+                    person.fk_cep,
+                    person.rg,
+                    person.cnpj,
+                    person.inscricao,
+                    person.fantasia,
+                    person.limit_cred,
+                    person.fk_grupo,
+                    person.date_of_birth,
+                    person.age
                 ];
                 yield postgreSQL_1.postgreSQL.query(query, values);
             }
@@ -45,7 +48,7 @@ class PersonDAO extends DAO_1.DAO {
             }
         });
     }
-    update(Person) {
+    update(person) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const query = `
@@ -65,25 +68,29 @@ class PersonDAO extends DAO_1.DAO {
                     inscricao = $11,
                     fantasia = $12,
                     limit_cred = $13,
-                    fk_grupo = $14
+                    fk_grupo = $14,
+                    date_of_birth = $16,
+                    age = $17
                 WHERE id_person = $15
             `;
                 const values = [
-                    Person.name,
-                    Person.cpf_pers,
-                    Person.phone_pers,
-                    Person.address_pers,
-                    Person.num_address,
-                    Person.bairro_pers,
-                    Person.fk_cep,
-                    Person.fk_name_filial,
-                    Person.rg,
-                    Person.cnpj,
-                    Person.inscricao,
-                    Person.fantasia,
-                    Person.limit_cred,
-                    Person.fk_grupo,
-                    Person.id
+                    person.name,
+                    person.cpf_pers,
+                    person.phone_pers,
+                    person.address_pers,
+                    person.num_address,
+                    person.bairro_pers,
+                    person.fk_cep,
+                    person.fk_name_filial,
+                    person.rg,
+                    person.cnpj,
+                    person.inscricao,
+                    person.fantasia,
+                    person.limit_cred,
+                    person.fk_grupo,
+                    person.id,
+                    person.date_of_birth,
+                    person.age
                 ];
                 yield postgreSQL_1.postgreSQL.query(query, values);
             }
